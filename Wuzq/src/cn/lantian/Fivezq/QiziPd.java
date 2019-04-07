@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 //判断胜负 
 public class QiziPd {
-	// 将一些重要参数的值传过来
+	// 将一些重要参数的值传过来jkshkjdhkawdjlka
 	public static int[][] s = WuzqFrame.s;
 	private static int n = WuzqFrame.n;
 	// 构建两个移动数组（暂且这么说）
