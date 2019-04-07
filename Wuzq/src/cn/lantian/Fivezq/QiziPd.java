@@ -47,7 +47,7 @@ public class QiziPd {
 						JOptionPane.showMessageDialog(null, "白棋赢了，再来一盘吧！");
 					}
 					// 初始数组
-					wzq.chushi();
+					wzq.initialize();
 					// 重绘棋盘
 					wzq.repaint();
 					// 先下的 棋子为黑子，t改为白子，后面的语句会改过来
