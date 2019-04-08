@@ -2,6 +2,8 @@ package algorithm_design.gobang;
 
 import java.awt.event.MouseEvent;
 
+import javax.swing.JOptionPane;
+
 /**
  * @author kaimo
  *
@@ -33,6 +35,7 @@ public class MouseListener implements java.awt.event.MouseListener {
 			this.chessframe.repaint();
 			if (this.chessframe.isEnd(x, y, ChessFrame.BLACK)) {
 				System.out.println("player wins!");
+				JOptionPane.showMessageDialog(null, "Congratulations,You Win!");
 				this.chessframe.init();
 				this.chessframe.repaint();
 			}
@@ -43,6 +46,7 @@ public class MouseListener implements java.awt.event.MouseListener {
 		this.chessframe.makeMove(robotXY[0], robotXY[1], ChessFrame.WHITE);
 		if (this.chessframe.isEnd(robotXY[0], robotXY[1], ChessFrame.WHITE)) {
 			System.out.println("robot wins!");
+			JOptionPane.showMessageDialog(null, "Sorry, you lose.");
 			this.chessframe.init();
 			this.chessframe.repaint();
 		}
