@@ -1,8 +1,13 @@
 package algorithm_design.gobang;
 
 import javax.swing.JFrame;
+
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 /**
  * @author kaimo
@@ -20,6 +25,10 @@ public class ChessFrame extends JFrame {
 	// matrix to store all chess coordinates
 	public static int[][] s = new int[CHESS_SIZE][CHESS_SIZE];
 	
+	// two buffer to solve screen flashes
+	private Image iBuffer;  
+	private Graphics gBuffer; 
+	
 	public void init() {
 		// initialized all coordinates to zero
 		for(int i = 0; i < ChessFrame.CHESS_SIZE; i++) {
@@ -35,7 +44,10 @@ public class ChessFrame extends JFrame {
 	public void paint(Graphics g) {
 		
 		// initialize paint
-		super.paint(g);
+		super.paintComponents(g);
+		//Graphics2D g2 = (Graphics2D)g; 
+		//g2.setStroke(new BasicStroke(1.5f));
+
 		
 		// draw vertical and horizontal line
 		for (int i = 0; i < CHESS_SIZE; i++) {
@@ -67,7 +79,26 @@ public class ChessFrame extends JFrame {
 				}
 			}
 		}
+		
 	}
+	
+	@Override
+	public void update(Graphics g) {
+		 //initialize buffer
+	    if(iBuffer==null)  {  
+	       iBuffer=createImage(this.getSize().width,this.getSize().height);  
+	       gBuffer=iBuffer.getGraphics();  
+	    }  
+       // set gBuffer the same as graphics we want to draw on the back end
+       gBuffer.setColor(getBackground());  
+       gBuffer.fillRect(0,0,this.getSize().width,this.getSize().height);  
+       // repaint the graphic 
+       gBuffer.setColor (getForeground());
+       paint(gBuffer);
+       //repaint the image
+       g.drawImage(iBuffer,0,0,this);  
+	}  
+
 
 	public boolean isEmpty(int x, int y) {
 		return ChessFrame.s[x][y] == EMPTY;
