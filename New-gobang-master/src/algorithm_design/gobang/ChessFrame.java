@@ -51,7 +51,6 @@ public class ChessFrame extends JFrame {
 		super.paintComponents(g);
 		//Graphics2D g2 = (Graphics2D)g; 
 		//g2.setStroke(new BasicStroke(1.5f));
-
 		
 		// draw vertical and horizontal line
 		for (int i = 0; i < CHESS_SIZE; i++) {
