@@ -160,108 +160,96 @@ public class ChessFrame extends JFrame {
 		
 		return count;
 	}
-	
+/**
 //	public int reckon(int color) {
-//		int dx[] = {1, 0, 1, 1};
-//		int dy[] = {0, 1, 1, -1};
-//		int score = 0;
-//		
-//		// traversal each coordinate
-//		for (int x = 0; x < ChessFrame.CHESS_SIZE; x++) {
-//			for (int y = 0; y < ChessFrame.CHESS_SIZE; y++) {
-//				
-//				// skip the opponent's color
-//				if (ChessFrame.s[x][y] != color) { continue; }
-//				// a variable to store the count of continuous chess
-//				int recordPad[][] = new int[2][100];				
-//				
-//				// traversal each direction lines
-//				for (int i = 0; i < 4; i++) {
-//					// flag to store if dead
-//					int flag1 = 0, flag2 = 0;
-//					// current count
-//					int count = 1;	
-//					//    direction #1    //
-//					int nextX = x + dx[i];	// get next (x,y)
-//					int nextY = y + dy[i];	// get next (x,y)
-//					// next (x, y) is legal and move on in same direction
-//					while (isLegal(nextX, nextY) &&
-//							ChessFrame.s[nextX][nextY] == color) {
-//						count = count + 1;
-//						nextX = nextX + dx[i];
-//						nextY = nextY + dy[i];
-//					}
-//					if (isLegal(nextX, nextY) &&
-//							ChessFrame.s[nextX][nextY] == ChessFrame.EMPTY) {
-//						flag1 = 1;
-//					}
-//					//    direction #2    //
-//					nextX = x - dx[i];
-//					nextY = y - dy[i];
-//					while (isLegal(nextX, nextY) &&
-//							ChessFrame.s[nextX][nextY] == color) {
-//						count = count + 1;
-//						nextX = nextX - dx[i];
-//						nextY = nextY - dy[i];
-//					}
-//					if (isLegal(nextX, nextY) &&
-//							ChessFrame.s[nextX][nextY] == ChessFrame.EMPTY) {
-//						flag2 = 1;
-//					}
-//					// i.e. at least one flag=1, alive
-//					if (flag1 + flag2 > 0) {
-//						// if +/- direction promising - dead
-//						// if + & - direction promising - alive
-//						++recordPad[flag1 + flag2 - 1][count];
-//					}
+//	int dx[] = {1, 0, 1, 1};
+//	int dy[] = {0, 1, 1, -1};
+//	int score = 0;
+//	
+//	// traversal each coordinate
+//	for (int x = 0; x < ChessFrame.CHESS_SIZE; x++) {
+//		for (int y = 0; y < ChessFrame.CHESS_SIZE; y++) {
+//			
+//			// skip the opponent's color
+//			if (ChessFrame.s[x][y] != color) { continue; }
+//			// a variable to store the count of continuous chess
+//			int recordPad[][] = new int[2][100];				
+//			
+//			// traversal each direction lines
+//			for (int i = 0; i < 4; i++) {
+//				// flag to store if dead
+//				int flag1 = 0, flag2 = 0;
+//				// current count
+//				int count = 1;	
+//				//    direction #1    //
+//				int nextX = x + dx[i];	// get next (x,y)
+//				int nextY = y + dy[i];	// get next (x,y)
+//				// next (x, y) is legal and move on in same direction
+//				while (isLegal(nextX, nextY) &&
+//						ChessFrame.s[nextX][nextY] == color) {
+//					count = count + 1;
+//					nextX = nextX + dx[i];
+//					nextY = nextY + dy[i];
 //				}
-//				
-//				/*
-//				 * calculate score
-//				 * several situations:
-//				 * 		#1: 5							win
-//				 * 		#2: 4-2; 4-1x2; 4-1x1+3-2x1;	winable
-//				 * 		#3: 3-2x2						winable
-//				 * 		#4: 3-2x1+3-1x1					control
-//				 * 		#5: 4-1x1						control
-//				 * 		#6: 3-2x1						
-//				 * 		#7: 3-1x1
-//				 * 		#8: 2-2x2
-//				 * 		#9: 2-2x1
-//				 * 		#10: 2-1x1
-//				 */
-//				if (recordPad[0][5] > 0 || recordPad[1][5] > 0) {
-//					score = Math.max(score, 100000);
-//				}else if (recordPad[1][4] > 0||
-//						recordPad[0][4] > 1||
-//						recordPad[0][4] > 0 && recordPad[1][3] > 0) {
-//					score = Math.max(score, 10000);
-//				}else if (recordPad[1][3] > 1) {
-//					score = Math.max(score, 5000);
-//				}else if (recordPad[1][3] > 0 && recordPad[0][3] > 0) {
-//					score = Math.max(score, 1000);
-//				}else if (recordPad[0][4] > 0) {
-//					score = Math.max(score, 500);
-//				}else if (recordPad[1][3] > 0) {
-//					score = Math.max(score, 200);
-//				}else if (recordPad[0][3] > 0) {
-//					score = Math.max(score, 100);
-//				}else if (recordPad[1][2] > 1) {
-//					score = Math.max(score, 50);
-//				}else if (recordPad[1][2] > 0) {
-//					score = Math.max(score, 10);
-//				}else if (recordPad[0][2] > 0) {
-//					score = Math.max(score, 5);
-//				}else {
-//					score = Math.max(score, 1);
+//				if (isLegal(nextX, nextY) &&
+//						ChessFrame.s[nextX][nextY] == ChessFrame.EMPTY) {
+//					flag1 = 1;
 //				}
-//				
-//				
+//				//    direction #2    //
+//				nextX = x - dx[i];
+//				nextY = y - dy[i];
+//				while (isLegal(nextX, nextY) &&
+//						ChessFrame.s[nextX][nextY] == color) {
+//					count = count + 1;
+//					nextX = nextX - dx[i];
+//					nextY = nextY - dy[i];
+//				}
+//				if (isLegal(nextX, nextY) &&
+//						ChessFrame.s[nextX][nextY] == ChessFrame.EMPTY) {
+//					flag2 = 1;
+//				}
+//				// i.e. at least one flag=1, alive
+//				if (flag1 + flag2 > 0) {
+//					// if +/- direction promising - dead
+//					// if + & - direction promising - alive
+//					++recordPad[flag1 + flag2 - 1][count];
+//				}
 //			}
+//			
+//			if (recordPad[0][5] > 0 || recordPad[1][5] > 0) {
+//				score = Math.max(score, 100000);
+//			}else if (recordPad[1][4] > 0||
+//					recordPad[0][4] > 1||
+//					recordPad[0][4] > 0 && recordPad[1][3] > 0) {
+//				score = Math.max(score, 10000);
+//			}else if (recordPad[1][3] > 1) {
+//				score = Math.max(score, 5000);
+//			}else if (recordPad[1][3] > 0 && recordPad[0][3] > 0) {
+//				score = Math.max(score, 1000);
+//			}else if (recordPad[0][4] > 0) {
+//				score = Math.max(score, 500);
+//			}else if (recordPad[1][3] > 0) {
+//				score = Math.max(score, 200);
+//			}else if (recordPad[0][3] > 0) {
+//				score = Math.max(score, 100);
+//			}else if (recordPad[1][2] > 1) {
+//				score = Math.max(score, 50);
+//			}else if (recordPad[1][2] > 0) {
+//				score = Math.max(score, 10);
+//			}else if (recordPad[0][2] > 0) {
+//				score = Math.max(score, 5);
+//			}else {
+//				score = Math.max(score, 1);
+//			}
+//			
+//			
 //		}
-//		
-//		return score;
 //	}
+//	
+//	return score;
+//}
+**/
+
 	public int reckon(int color) {
 		int dx[] = { 1, 0, 1, 1 };
 		int dy[] = { 0, 1, 1, -1 };
@@ -320,7 +308,7 @@ public class ChessFrame extends JFrame {
 					continue;
 				}
 				// a variable to store the count of continuous chess
-				int recordPad[][] = new int[2][7];
+				int recordPad[][] = new int[2][100];
 				String str = "a";
 				// traversal each direction lines
 				for (int i = 0; i < 4; i++) {
