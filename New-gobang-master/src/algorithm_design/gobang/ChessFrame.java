@@ -254,6 +254,8 @@ public class ChessFrame extends JFrame {
 		int dx[] = { 1, 0, 1, 1 };
 		int dy[] = { 0, 1, 1, -1 };
 		int score = 0;
+		
+		toScore.put("a____", 100);
 		// 眠二
 		toScore.put("aa___", 100);
 		toScore.put("a_a__", 100);
@@ -309,7 +311,8 @@ public class ChessFrame extends JFrame {
 				}
 				// a variable to store the count of continuous chess
 				int recordPad[][] = new int[2][100];
-				String str = "a";
+				String str1 = "a";
+				String str2 ="a";
 				// traversal each direction lines
 				for (int i = 0; i < 4; i++) {
 					// flag to store if dead
@@ -323,9 +326,9 @@ public class ChessFrame extends JFrame {
 					while (isLegal(nextX, nextY) && ChessFrame.s[nextX][nextY] != -color && count < 7) {
 						// 判断6个棋，用str标记棋型，a为子，_为空
 						if (ChessFrame.s[nextX][nextY] == color) {
-							str += "a";
+							str1 += "a";
 						} else {
-							str += "_";
+							str1 += "_";
 						}
 						nextX = nextX + dx[i];
 						nextY = nextY + dy[i];
@@ -337,9 +340,9 @@ public class ChessFrame extends JFrame {
 					while (isLegal(nextX, nextY) && ChessFrame.s[nextX][nextY] != -color && count < 7) {
 						// 判断6个棋，用str标记棋型，a为子，_为空
 						if (ChessFrame.s[nextX][nextY] == color) {
-							str += "a";
+							str2 += "a";
 						} else {
-							str += "_";
+							str2 += "_";
 						}
 						nextX = nextX - dx[i];
 						nextY = nextY - dy[i];
@@ -348,7 +351,10 @@ public class ChessFrame extends JFrame {
 
 				}
 				for(String key : toScore.keySet()){
-				if (str.contains(key) ) {
+				if (str1.contains(key) ) {
+					score = Math.max(toScore.get(key), score);
+				}
+				if (str2.contains(key) ) {
 					score = Math.max(toScore.get(key), score);
 				}
 				}

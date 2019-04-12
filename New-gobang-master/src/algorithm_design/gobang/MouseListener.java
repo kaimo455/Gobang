@@ -44,10 +44,13 @@ public class MouseListener implements java.awt.event.MouseListener {
 					this.chessframe.init();
 					this.chessframe.repaint();
 				}
+				else {
+					// swith to robot moves
+					SWITCH = -1;
+				}
 			}
 
-			// swith to robot moves
-			SWITCH = -1;
+		
 
 		}
 
