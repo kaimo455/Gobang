@@ -33,9 +33,13 @@ public class ChessFrame extends JFrame {
 		// initialized all coordinates to zero
 		for(int i = 0; i < ChessFrame.CHESS_SIZE; i++) {
 			for (int j = 0; j < ChessFrame.CHESS_SIZE; j++) {
-				ChessFrame.s[i][j] = 0;
+				this.s[i][j] = EMPTY;
 			}
 		}
+		// always robot move first
+		this.makeMove(7, 7, WHITE);
+		// turn to player move
+		MouseListener.SWITCH = 1;
 	}
 	
 	/**
@@ -166,7 +170,7 @@ public class ChessFrame extends JFrame {
 				// skip the opponent's color
 				if (ChessFrame.s[x][y] != color) { continue; }
 				// a variable to store the count of continuous chess
-				int recordPad[][] = new int[2][6];				
+				int recordPad[][] = new int[2][100];				
 				
 				// traversal each direction lines
 				for (int i = 0; i < 4; i++) {
