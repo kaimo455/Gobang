@@ -255,7 +255,7 @@ public class ChessFrame extends JFrame {
 		int dy[] = { 0, 1, 1, -1 };
 		int score = 0;
 		
-		toScore.put("a____", 100);
+		toScore.put("a____", 1);
 		// 眠二
 		toScore.put("aa___", 100);
 		toScore.put("a_a__", 100);
@@ -311,10 +311,12 @@ public class ChessFrame extends JFrame {
 				}
 				// a variable to store the count of continuous chess
 				int recordPad[][] = new int[2][100];
-				String str1 = "a";
-				String str2 ="a";
+			
 				// traversal each direction lines
 				for (int i = 0; i < 4; i++) {
+					  StringBuilder input = new StringBuilder();
+						String str1 = "a";
+						String str2 = "";
 					// flag to store if dead
 					// int flag1 = 0, flag2 = 0;
 					// current count
@@ -323,7 +325,7 @@ public class ChessFrame extends JFrame {
 					int nextX = x + dx[i]; // get next (x,y)
 					int nextY = y + dy[i]; // get next (x,y)
 				
-					while (isLegal(nextX, nextY) && ChessFrame.s[nextX][nextY] != -color && count < 7) {
+					while (isLegal(nextX, nextY) && ChessFrame.s[nextX][nextY] != -color && count < 5) {
 						// 判断6个棋，用str标记棋型，a为子，_为空
 						if (ChessFrame.s[nextX][nextY] == color) {
 							str1 += "a";
@@ -334,10 +336,10 @@ public class ChessFrame extends JFrame {
 						nextY = nextY + dy[i];
 						count++;
 					}
-
+                    count = 1;
 					nextX = x - dx[i];
 					nextY = y - dy[i];
-					while (isLegal(nextX, nextY) && ChessFrame.s[nextX][nextY] != -color && count < 7) {
+					while (isLegal(nextX, nextY) && ChessFrame.s[nextX][nextY] != -color && count < 5) {
 						// 判断6个棋，用str标记棋型，a为子，_为空
 						if (ChessFrame.s[nextX][nextY] == color) {
 							str2 += "a";
@@ -348,15 +350,20 @@ public class ChessFrame extends JFrame {
 						nextY = nextY - dy[i];
 						count++;
 					}
-
+                input.append(str2);
+                input = input.reverse();
+                input.append(str1);
+                for(String key : toScore.keySet()){
+    				if (input.toString().contains(key) ) {
+    					//System.out.println("input = "+input.toString());
+    					score = Math.max(toScore.get(key), score);
+    				}
+    				
 				}
-				for(String key : toScore.keySet()){
-				if (str1.contains(key) ) {
-					score = Math.max(toScore.get(key), score);
-				}
-				if (str2.contains(key) ) {
-					score = Math.max(toScore.get(key), score);
-				}
+				
+//				if (str2.contains(key) ) {
+//					score = Math.max(toScore.get(key), score);
+//				}
 				}
 				
 				

@@ -81,7 +81,7 @@ public class Robot {
 				chessframe.unMove(x, y);
 			}
 		}
-		
+		System.out.println("maxscore="+scoreMax);
 		return corr;
 	}
 }
