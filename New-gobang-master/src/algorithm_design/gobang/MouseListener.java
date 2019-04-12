@@ -46,7 +46,7 @@ public class MouseListener implements java.awt.event.MouseListener {
 				}
 			}
 
-			// swith to robot move
+			// swith to robot moves
 			SWITCH = -1;
 
 		}
