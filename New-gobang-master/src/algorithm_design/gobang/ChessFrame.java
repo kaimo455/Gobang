@@ -317,9 +317,7 @@ public class ChessFrame extends JFrame {
 					  StringBuilder input = new StringBuilder();
 						String str1 = "a";
 						String str2 = "";
-					// flag to store if dead
-					// int flag1 = 0, flag2 = 0;
-					// current count
+
 					int count = 1;
 					// direction #1 //
 					int nextX = x + dx[i]; // get next (x,y)
@@ -360,10 +358,7 @@ public class ChessFrame extends JFrame {
     				}
     				
 				}
-				
-//				if (str2.contains(key) ) {
-//					score = Math.max(toScore.get(key), score);
-//				}
+
 				}
 				
 				
