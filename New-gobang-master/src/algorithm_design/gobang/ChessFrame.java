@@ -2,10 +2,12 @@ package algorithm_design.gobang;
 
 import javax.swing.JFrame;
 
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
@@ -26,12 +28,74 @@ public class ChessFrame extends JFrame {
 	// matrix to store all chess coordinates
 	public static int[][] s = new int[CHESS_SIZE][CHESS_SIZE];
 	
-	public static HashMap <String, Integer> toScore = new HashMap<>();
+	public static HashMap <String, Integer> toScore1 = new HashMap<>();
+	public static HashMap <String, Integer> toScore2= new HashMap<>();
+	public static HashMap <String, Integer> toScore3 = new HashMap<>();
+	public static HashMap <String, Integer> toScore4 = new HashMap<>();
+	public static HashMap <String, Integer> toScore5 = new HashMap<>();
 	
 	// two buffer to solve screen flashes
 	private Image iBuffer;  
 	private Graphics gBuffer; 
+
 	
+	
+	public ChessFrame() throws HeadlessException {
+		super();
+		
+		
+		//toScore1.put("a__", 1);
+		toScore1.put("___a__", 20);
+		toScore1.put("__a__", 20);
+		// 眠二
+		//toScore2.put("aa___", 110);
+		toScore2.put("_a_a__", 120);
+		//toScore2.put("___aa", 110);
+		toScore2.put("__a_a_", 120);
+		//toScore2.put("a__a_", 90);
+		//toScore2.put("_a__a", 90);
+		//toScore2.put("a___a", 80);
+
+		// 活二"_aa___"
+		toScore2.put("__aa__", 120);
+		//toScore2.put("_a_a_", 500);
+		//toScore2.put("_a__a_", 400);
+		//toScore2.put("_aa__", 500);
+		//toScore2.put("__aa_", 500);
+
+		// 眠三
+//		toScore3.put("a_a_a", 1000);
+//		toScore3.put("aa__a", 1000);
+//		toScore3.put("_aa_a", 1100);
+//		toScore3.put("a_aa_", 1100);
+//		toScore3.put("_a_aa", 1100);
+//		toScore3.put("aa_a_", 1100);
+//		toScore3.put("aaa__", 1100);
+
+		// 跳活三
+		toScore3.put("_aa_a_", 720);
+		toScore3.put("_a_aa_", 720);
+
+		// 活三 
+		toScore3.put("_aaa__", 720);
+		toScore3.put("__aaa_", 720);
+
+		// 冲四
+		toScore3.put("a_aaa", 720);
+		toScore3.put("aaa_a", 720);
+		toScore3.put("_aaaa", 720);
+		toScore3.put("aaaa_", 720);
+		toScore3.put("aa_aa", 720);
+
+		// 活四
+		toScore4.put("_aaaa_", 4320);
+
+		// 连五
+		toScore5.put("aaaaa", 50000);
+		
+		
+	}
+
 	public void init() {
 		// initialized all coordinates to zero
 		for(int i = 0; i < ChessFrame.CHESS_SIZE; i++) {
@@ -160,146 +224,13 @@ public class ChessFrame extends JFrame {
 		
 		return count;
 	}
-/**
-//	public int reckon(int color) {
-//	int dx[] = {1, 0, 1, 1};
-//	int dy[] = {0, 1, 1, -1};
-//	int score = 0;
-//	
-//	// traversal each coordinate
-//	for (int x = 0; x < ChessFrame.CHESS_SIZE; x++) {
-//		for (int y = 0; y < ChessFrame.CHESS_SIZE; y++) {
-//			
-//			// skip the opponent's color
-//			if (ChessFrame.s[x][y] != color) { continue; }
-//			// a variable to store the count of continuous chess
-//			int recordPad[][] = new int[2][100];				
-//			
-//			// traversal each direction lines
-//			for (int i = 0; i < 4; i++) {
-//				// flag to store if dead
-//				int flag1 = 0, flag2 = 0;
-//				// current count
-//				int count = 1;	
-//				//    direction #1    //
-//				int nextX = x + dx[i];	// get next (x,y)
-//				int nextY = y + dy[i];	// get next (x,y)
-//				// next (x, y) is legal and move on in same direction
-//				while (isLegal(nextX, nextY) &&
-//						ChessFrame.s[nextX][nextY] == color) {
-//					count = count + 1;
-//					nextX = nextX + dx[i];
-//					nextY = nextY + dy[i];
-//				}
-//				if (isLegal(nextX, nextY) &&
-//						ChessFrame.s[nextX][nextY] == ChessFrame.EMPTY) {
-//					flag1 = 1;
-//				}
-//				//    direction #2    //
-//				nextX = x - dx[i];
-//				nextY = y - dy[i];
-//				while (isLegal(nextX, nextY) &&
-//						ChessFrame.s[nextX][nextY] == color) {
-//					count = count + 1;
-//					nextX = nextX - dx[i];
-//					nextY = nextY - dy[i];
-//				}
-//				if (isLegal(nextX, nextY) &&
-//						ChessFrame.s[nextX][nextY] == ChessFrame.EMPTY) {
-//					flag2 = 1;
-//				}
-//				// i.e. at least one flag=1, alive
-//				if (flag1 + flag2 > 0) {
-//					// if +/- direction promising - dead
-//					// if + & - direction promising - alive
-//					++recordPad[flag1 + flag2 - 1][count];
-//				}
-//			}
-//			
-//			if (recordPad[0][5] > 0 || recordPad[1][5] > 0) {
-//				score = Math.max(score, 100000);
-//			}else if (recordPad[1][4] > 0||
-//					recordPad[0][4] > 1||
-//					recordPad[0][4] > 0 && recordPad[1][3] > 0) {
-//				score = Math.max(score, 10000);
-//			}else if (recordPad[1][3] > 1) {
-//				score = Math.max(score, 5000);
-//			}else if (recordPad[1][3] > 0 && recordPad[0][3] > 0) {
-//				score = Math.max(score, 1000);
-//			}else if (recordPad[0][4] > 0) {
-//				score = Math.max(score, 500);
-//			}else if (recordPad[1][3] > 0) {
-//				score = Math.max(score, 200);
-//			}else if (recordPad[0][3] > 0) {
-//				score = Math.max(score, 100);
-//			}else if (recordPad[1][2] > 1) {
-//				score = Math.max(score, 50);
-//			}else if (recordPad[1][2] > 0) {
-//				score = Math.max(score, 10);
-//			}else if (recordPad[0][2] > 0) {
-//				score = Math.max(score, 5);
-//			}else {
-//				score = Math.max(score, 1);
-//			}
-//			
-//			
-//		}
-//	}
-//	
-//	return score;
-//}
-**/
 
 	public int reckon(int color) {
 		int dx[] = { 1, 0, 1, 1 };
 		int dy[] = { 0, 1, 1, -1 };
 		int score = 0;
 		
-		toScore.put("a____", 1);
-		// 眠二
-		toScore.put("aa___", 100);
-		toScore.put("a_a__", 100);
-		toScore.put("___aa", 100);
-		toScore.put("__a_a", 100);
-		toScore.put("a__a_", 100);
-		toScore.put("_a__a", 100);
-		toScore.put("a___a", 100);
-
-		// 活二"_aa___"
-		toScore.put("__aa__", 500);
-		toScore.put("_a_a_", 500);
-		toScore.put("_a__a_", 500);
-		toScore.put("_aa__", 500);
-		toScore.put("__aa_", 500);
-
-		// 眠三
-		toScore.put("a_a_a", 1000);
-		toScore.put("aa__a", 1000);
-		toScore.put("_aa_a", 1000);
-		toScore.put("a_aa_", 1000);
-		toScore.put("_a_aa", 1000);
-		toScore.put("aa_a_", 1000);
-		toScore.put("aaa__", 1000);
-
-		// 跳活三
-		toScore.put("_aa_a_", 9000);
-		toScore.put("_a_aa_", 9000);
-
-		// 活三 
-		toScore.put("_aaa_", 10000);
-
-		// 冲四
-		toScore.put("a_aaa", 15000);
-		toScore.put("aaa_a", 15000);
-		toScore.put("_aaaa", 15000);
-		toScore.put("aaaa_", 15000);
-		toScore.put("aa_aa", 15000);
-
-		// 活四
-		toScore.put("_aaaa_", 1000000);
-
-		// 连五
-		toScore.put("aaaaa", 10000000);
+		
 
 		// traversal each coordinate
 		for (int x = 0; x < ChessFrame.CHESS_SIZE; x++) {
@@ -319,6 +250,7 @@ public class ChessFrame extends JFrame {
 						String str2 = "";
 
 					int count = 1;
+					int num = 0;
 					// direction #1 //
 					int nextX = x + dx[i]; // get next (x,y)
 					int nextY = y + dy[i]; // get next (x,y)
@@ -327,6 +259,7 @@ public class ChessFrame extends JFrame {
 						// 判断6个棋，用str标记棋型，a为子，_为空
 						if (ChessFrame.s[nextX][nextY] == color) {
 							str1 += "a";
+							num++;
 						} else {
 							str1 += "_";
 						}
@@ -341,6 +274,7 @@ public class ChessFrame extends JFrame {
 						// 判断6个棋，用str标记棋型，a为子，_为空
 						if (ChessFrame.s[nextX][nextY] == color) {
 							str2 += "a";
+							num++;
 						} else {
 							str2 += "_";
 						}
@@ -351,13 +285,72 @@ public class ChessFrame extends JFrame {
                 input.append(str2);
                 input = input.reverse();
                 input.append(str1);
-                for(String key : toScore.keySet()){
-    				if (input.toString().contains(key) ) {
-    					//System.out.println("input = "+input.toString());
-    					score = Math.max(toScore.get(key), score);
+
+                
+                if(num>0){
+                    int a = 0;
+                    
+                	for(String key : toScore5.keySet()){
+        				if (input.toString().contains(key) ) {
+        					//System.out.println("input = "+input.toString());
+        					//score = Math.max(toScore5.get(key), score);
+        					score += toScore5.get(key);
+        					a = 1;
+        					
+        				}	
     				}
-    				
-				}
+                	if (a == 1) continue;
+                	
+               
+                	for(String key : toScore4.keySet()){
+        				if (input.toString().contains(key) ) {
+        					//System.out.println("input = "+input.toString());
+        					//score = Math.max(toScore4.get(key), score);
+        					score += toScore4.get(key);
+        					a = 1;
+        		
+        				}	
+    				}	
+                	if (a == 1) continue;
+                	
+                	for(String key : toScore3.keySet()){
+        				if (input.toString().contains(key) ) {
+        					//System.out.println("input = "+input.toString());
+        					//score = Math.max(toScore3.get(key), score);
+        					score += toScore3.get(key);
+        					a = 1;
+        					
+        				}	
+    				}	
+                	if (a == 1) continue;
+                	
+               
+                	for(String key : toScore2.keySet()){
+        				if (input.toString().contains(key) ) {
+        					//System.out.println("input = "+input.toString());
+        					//score = Math.max(toScore2.get(key), score);
+        					score += toScore2.get(key);
+        					a = 1;
+        					
+        				}	
+    				}	
+                	if (a == 1) continue;
+                	
+                	for(String key : toScore1.keySet()){
+        				if (input.toString().contains(key) ) {
+        					//System.out.println("input = "+input.toString());
+        					//score = Math.max(toScore1.get(key), score);
+        					score += toScore1.get(key);
+        					a = 1;
+        					
+        				}	
+    				}	
+                	if (a == 1) continue;
+                	
+                }else {
+                	continue;
+                }
+                
 
 				}
 				
@@ -365,11 +358,12 @@ public class ChessFrame extends JFrame {
 
 			}
 		}
-		//System.out.println("score= "+score);
+
 		return score;
 	}
 
 
+	
 	public boolean isEnd(int x, int y, int color) {
 		
 		int dx[] = {1, 0, 1, 1};
