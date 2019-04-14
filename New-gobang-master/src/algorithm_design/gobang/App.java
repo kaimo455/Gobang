@@ -2,10 +2,21 @@ package algorithm_design.gobang;
 
 import java.awt.Color;
 
+import javax.swing.ImageIcon;
+
 public class App {
+	
+	public ImageIcon icon1;
+	public ImageIcon icon2;
+	
+	App() {
+		icon1 = new ImageIcon("./data/We.png");
+		icon2 = new ImageIcon("./data/lose.png");
+	}
 
 	public static void main(String[] args) {
 		ChessFrame chessframe = new ChessFrame();
+		
 		// basic setting for this chess frame 
 		chessframe.setTitle("Gobang");
 		chessframe.setSize(480, 500);
