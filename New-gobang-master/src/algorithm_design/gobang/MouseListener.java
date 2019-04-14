@@ -38,7 +38,8 @@ public class MouseListener implements java.awt.event.MouseListener {
 				this.chessframe.repaint();
 				if (this.chessframe.isEnd(x, y, ChessFrame.BLACK)) {
 					System.out.println("player wins!");
-					JOptionPane.showMessageDialog(null, "Congratulations,You Win!");
+					App app= new App();
+					JOptionPane.showMessageDialog(null, "Congratulations,You Win!","",JOptionPane.INFORMATION_MESSAGE,app.icon2);
 					this.chessframe.init();
 					this.chessframe.repaint();
 				} else {
@@ -57,7 +58,9 @@ public class MouseListener implements java.awt.event.MouseListener {
 			this.chessframe.makeMove(robotXY[0], robotXY[1], ChessFrame.WHITE);
 			if (this.chessframe.isEnd(robotXY[0], robotXY[1], ChessFrame.WHITE)) {
 				System.out.println("robot wins!");
-				JOptionPane.showMessageDialog(null, "Sorry, you lose.");
+				App app = new App();
+				JOptionPane.showMessageDialog(null, "Sorry, you lose.","", JOptionPane.INFORMATION_MESSAGE,app.icon1);
+				
 				this.chessframe.init();
 				this.chessframe.repaint();
 			}
