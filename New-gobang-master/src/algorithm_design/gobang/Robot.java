@@ -3,6 +3,10 @@ import java.util.Random;
 
 /**
  * @author kaimo
+ * @author Quan Liu
+ * @author Xiaoqian Xu
+ * @author Tianqi Xie
+ * @author Haochen Wei
  *
  */
 public class Robot {

@@ -4,6 +4,15 @@ import java.awt.Color;
 
 import javax.swing.ImageIcon;
 
+/**
+ * @author kaimo
+ * @author Quan Liu
+ * @author Xiaoqian Xu
+ * @author Tianqi Xie
+ * @author Haochen Wei
+ *
+ */
+
 public class App {
 	public ImageIcon icon1;
 	public ImageIcon icon2;

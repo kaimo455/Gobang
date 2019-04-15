@@ -6,6 +6,10 @@ import javax.swing.JOptionPane;
 
 /**
  * @author kaimo
+ * @author Quan Liu
+ * @author Xiaoqian Xu
+ * @author Tianqi Xie
+ * @author Haochen Wei
  *
  */
 public class MouseListener implements java.awt.event.MouseListener {

@@ -13,6 +13,10 @@ import java.util.HashMap;
 
 /**
  * @author kaimo
+ * @author Quan Liu
+ * @author Xiaoqian Xu
+ * @author Tianqi Xie
+ * @author Haochen Wei
  *
  */
 public class ChessFrame extends JFrame {
