@@ -29,8 +29,9 @@ public class Robot {
 		}
 		
 		// recursively
-		for (int x = 0; x < ChessFrame.CHESS_SIZE; x++) {
-			for (int y = 0; y < ChessFrame.CHESS_SIZE; y++) {
+		// but only in search boundary
+		for (int x = ChessFrame.SEARCH[0]; x <= ChessFrame.SEARCH[2]; x++) {
+			for (int y = ChessFrame.SEARCH[1]; y <= ChessFrame.SEARCH[3]; y++) {
 				
 				if (!chessframe.isEmpty(x, y)) {
 					continue;
@@ -63,8 +64,9 @@ public class Robot {
 		int scoreMax = -100000000;
 		Random random = new Random();
 
-		for (int x = 0; x < ChessFrame.CHESS_SIZE; x++) {
-			for (int y = 0; y < ChessFrame.CHESS_SIZE; y++) {
+		// we begin with search boundary
+		for (int x = ChessFrame.SEARCH[0]; x <= ChessFrame.SEARCH[2]; x++) {
+			for (int y = ChessFrame.SEARCH[1]; y <= ChessFrame.SEARCH[3]; y++) {
 				
 				if (!chessframe.isEmpty(x, y)) {
 					continue;
@@ -81,7 +83,7 @@ public class Robot {
 				chessframe.unMove(x, y);
 			}
 		}
-		System.out.println("maxscore="+scoreMax);
+		
 		return corr;
 	}
 }
