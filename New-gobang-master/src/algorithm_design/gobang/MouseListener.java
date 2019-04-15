@@ -53,7 +53,9 @@ public class MouseListener implements java.awt.event.MouseListener {
 		if (SWITCH == -1) {
 			// robot move
 			int robotXY[] = robot.nextStep(ChessFrame.WHITE);
-			this.chessframe.makeMove(robotXY[0], robotXY[1], ChessFrame.WHITE);
+			if (this.chessframe.isLegal(robotXY[0], robotXY[1])) {
+				this.chessframe.makeMove(robotXY[0], robotXY[1], ChessFrame.WHITE);
+			}
 			this.chessframe.updateBoundary(robotXY[0], robotXY[1]);
 			if (this.chessframe.isEnd(robotXY[0], robotXY[1], ChessFrame.WHITE)) {
 				System.out.println("robot wins!");
