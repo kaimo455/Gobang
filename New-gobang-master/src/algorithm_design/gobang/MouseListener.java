@@ -15,7 +15,7 @@ public class MouseListener implements java.awt.event.MouseListener {
 	// set robot
 	public static Robot robot = new Robot();
 	// switch
-	public static int SWITCH; // 1 - black move; -1 - white move
+	public static int SWITCH; // 1 - black move; -1 - white move  
 
 	// constructor
 	public MouseListener(ChessFrame chessframe) {

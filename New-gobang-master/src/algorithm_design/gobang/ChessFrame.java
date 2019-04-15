@@ -157,7 +157,7 @@ public class ChessFrame extends JFrame {
 	 */
 	public boolean isLegal(int x, int y) {
 
-		return (x > 0 && y > 0 &&
+		return (x >= 0 && y >= 0 &&
 				x < ChessFrame.CHESS_SIZE &&
 				y < ChessFrame.CHESS_SIZE);
 	}
