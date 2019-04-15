@@ -56,6 +56,12 @@ public class MouseListener implements java.awt.event.MouseListener {
 			if (this.chessframe.isLegal(robotXY[0], robotXY[1])) {
 				this.chessframe.makeMove(robotXY[0], robotXY[1], ChessFrame.WHITE);
 			}
+			else{
+				System.out.println("player wins!");
+				JOptionPane.showMessageDialog(null, "Congratulations,You Win! Robot has gave up!");
+				this.chessframe.init();
+				this.chessframe.repaint();
+			}
 			this.chessframe.updateBoundary(robotXY[0], robotXY[1]);
 			if (this.chessframe.isEnd(robotXY[0], robotXY[1], ChessFrame.WHITE)) {
 				System.out.println("robot wins!");
