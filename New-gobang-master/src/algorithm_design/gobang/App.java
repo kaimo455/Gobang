@@ -2,7 +2,16 @@ package algorithm_design.gobang;
 
 import java.awt.Color;
 
+import javax.swing.ImageIcon;
+
 public class App {
+	public ImageIcon icon1;
+	public ImageIcon icon2;
+	
+	public App(){
+		icon1 = new ImageIcon("./data/lose.jpg");
+		icon2 = new ImageIcon("./data/win.jpg");
+	}
 
 	public static void main(String[] args) {
 		ChessFrame chessframe = new ChessFrame();
