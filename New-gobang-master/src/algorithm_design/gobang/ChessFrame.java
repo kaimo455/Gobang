@@ -255,36 +255,57 @@ public class ChessFrame extends JFrame {
 					input = input.reverse();
 					input.append(str1);
 
-					if (sum >= 5) {
+					int a = 0;
+					if (sum > 0) {
+
 						for (String key : toScore5.keySet()) {
 							if (input.toString().contains(key)) {
 								score += toScore5.get(key);
+								a = 1;
 							}
 						}
-					}else if (sum == 4) {
+						if (a == 1) {
+							continue;
+						}
+
 						for (String key : toScore4.keySet()) {
 							if (input.toString().contains(key)) {
 								score += toScore4.get(key);
+								a = 1;
 							}
 						}
-					}else if (sum == 3) {
+						if (a == 1) {
+							continue;
+						}
+
 						for (String key : toScore3.keySet()) {
 							if (input.toString().contains(key)) {
 								score += toScore3.get(key);
 							}
 						}
-					}else if (sum == 2) {
+						if (a == 1) {
+							continue;
+						}
+
 						for (String key : toScore2.keySet()) {
 							if (input.toString().contains(key)) {
 								score += toScore2.get(key);
 							}
 						}
-					}else if (sum == 1) {
+						if (a == 1) {
+							continue;
+						}
+
 						for (String key : toScore1.keySet()) {
 							if (input.toString().contains(key)) {
 								score += toScore1.get(key);
 							}
 						}
+						if (a == 1) {
+							continue;
+						}
+					}else{
+						continue;
 					}
 				}
 				
