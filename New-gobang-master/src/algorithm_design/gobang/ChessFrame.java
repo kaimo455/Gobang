@@ -208,7 +208,6 @@ public class ChessFrame extends JFrame {
 					StringBuilder input = new StringBuilder();
 					String str1 = "a";	// for direction #1
 					String str2 = "";	// for direction #2
-					int sum = 1;
 					int count = 1;
 					// direction #1
 					int nextX = x + dx[i]; // get next (x,y)
@@ -219,7 +218,6 @@ public class ChessFrame extends JFrame {
 						count < 5){
 						if (ChessFrame.s[nextX][nextY] == color) {
 							str1 += "a";
-							sum++;
 						} else {
 							str1 += "_";
 						}
@@ -240,7 +238,6 @@ public class ChessFrame extends JFrame {
 						count < 5){
 						if (ChessFrame.s[nextX][nextY] == color) {
 							str2 += "a";
-							sum++;
 						} else {
 							str2 += "_";
 						}
@@ -256,57 +253,54 @@ public class ChessFrame extends JFrame {
 					input.append(str1);
 
 					int a = 0;
-					if (sum > 0) {
 
-						for (String key : toScore5.keySet()) {
-							if (input.toString().contains(key)) {
-								score += toScore5.get(key);
-								a = 1;
-							}
+					for (String key : toScore5.keySet()) {
+						if (input.toString().contains(key)) {
+							score += toScore5.get(key);
+							a = 1;
 						}
-						if (a == 1) {
-							continue;
-						}
-
-						for (String key : toScore4.keySet()) {
-							if (input.toString().contains(key)) {
-								score += toScore4.get(key);
-								a = 1;
-							}
-						}
-						if (a == 1) {
-							continue;
-						}
-
-						for (String key : toScore3.keySet()) {
-							if (input.toString().contains(key)) {
-								score += toScore3.get(key);
-							}
-						}
-						if (a == 1) {
-							continue;
-						}
-
-						for (String key : toScore2.keySet()) {
-							if (input.toString().contains(key)) {
-								score += toScore2.get(key);
-							}
-						}
-						if (a == 1) {
-							continue;
-						}
-
-						for (String key : toScore1.keySet()) {
-							if (input.toString().contains(key)) {
-								score += toScore1.get(key);
-							}
-						}
-						if (a == 1) {
-							continue;
-						}
-					}else{
+					}
+					if (a == 1) {
 						continue;
 					}
+
+					for (String key : toScore4.keySet()) {
+						if (input.toString().contains(key)) {
+							score += toScore4.get(key);
+							a = 1;
+						}
+					}
+					if (a == 1) {
+						continue;
+					}
+
+					for (String key : toScore3.keySet()) {
+						if (input.toString().contains(key)) {
+							score += toScore3.get(key);
+						}
+					}
+					if (a == 1) {
+						continue;
+					}
+
+					for (String key : toScore2.keySet()) {
+						if (input.toString().contains(key)) {
+							score += toScore2.get(key);
+						}
+					}
+					if (a == 1) {
+						continue;
+					}
+
+					for (String key : toScore1.keySet()) {
+						if (input.toString().contains(key)) {
+							score += toScore1.get(key);
+						}
+					}
+					if (a == 1) {
+						continue;
+					}
+
 				}
 				
 			}
