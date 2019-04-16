@@ -31,7 +31,6 @@ public class MouseListener implements java.awt.event.MouseListener {
 
 		if (SWITCH == 1) {
 			// player move
-
 			// capture the mouse current coordinate
 			int x = Math.round((float) (e.getX() - ChessFrame.x) / ChessFrame.CELL_SIZE);
 			int y = Math.round((float) (e.getY() - ChessFrame.y) / ChessFrame.CELL_SIZE);
@@ -48,32 +47,69 @@ public class MouseListener implements java.awt.event.MouseListener {
 					this.chessframe.init();
 					this.chessframe.repaint();
 				} else {
-					SWITCH = -1;
+					SWITCH = -1;// switch to robot move
 				}
 			}
-
-			// switch to robot move
-
 		}
-
+		
+		
+		// robot movement
 		if (SWITCH == -1) {
-			// robot move
-			int robotXY[] = robot.nextStep(ChessFrame.WHITE);
-			if (this.chessframe.isLegal(robotXY[0], robotXY[1])) {
-				this.chessframe.makeMove(robotXY[0], robotXY[1], ChessFrame.WHITE);
+			// level 1
+			if (ChessFrame.LEVEL == 1) {
+				// set the depth of search tree to 1
+				Robot.SEARCH_DEPTH = 1;
+				int robotXY[] = robot.nextStep_v1(ChessFrame.WHITE);
+				if (this.chessframe.isLegal(robotXY[0], robotXY[1])) {
+					this.chessframe.makeMove(robotXY[0], robotXY[1], ChessFrame.WHITE);
+				}
+				this.chessframe.updateBoundary(robotXY[0], robotXY[1]);
+				if (this.chessframe.isEnd(robotXY[0], robotXY[1], ChessFrame.WHITE)) {
+					System.out.println("robot wins!");
+					App app = new App();
+					//Message Box
+					JOptionPane.showMessageDialog(null, "Sorry, you lose.","", JOptionPane.INFORMATION_MESSAGE,app.icon1);
+					this.chessframe.init();
+					this.chessframe.repaint();
+				}
 			}
-			this.chessframe.updateBoundary(robotXY[0], robotXY[1]);
-			if (this.chessframe.isEnd(robotXY[0], robotXY[1], ChessFrame.WHITE)) {
-				System.out.println("robot wins!");
-				App app = new App();
-				//Message Box
-				JOptionPane.showMessageDialog(null, "Sorry, you lose.","", JOptionPane.INFORMATION_MESSAGE,app.icon1);
-				this.chessframe.init();
-				this.chessframe.repaint();
+			// level 2
+			if (ChessFrame.LEVEL == 2) {
+				// set the depth of search tree to 1
+				Robot.SEARCH_DEPTH = 1;
+				int robotXY[] = robot.nextStep_v2(ChessFrame.WHITE);
+				if (this.chessframe.isLegal(robotXY[0], robotXY[1])) {
+					this.chessframe.makeMove(robotXY[0], robotXY[1], ChessFrame.WHITE);
+				}
+				this.chessframe.updateBoundary(robotXY[0], robotXY[1]);
+				if (this.chessframe.isEnd(robotXY[0], robotXY[1], ChessFrame.WHITE)) {
+					System.out.println("robot wins!");
+					App app = new App();
+					//Message Box
+					JOptionPane.showMessageDialog(null, "Sorry, you lose.","", JOptionPane.INFORMATION_MESSAGE,app.icon1);
+					this.chessframe.init();
+					this.chessframe.repaint();
+				}
 			}
-
-			// switch to player move
-			SWITCH = 1;
+			// level 3
+			if (ChessFrame.LEVEL == 3) {
+				// set the depth of search tree to 2, that is the master
+				Robot.SEARCH_DEPTH = 2;
+				int robotXY[] = robot.nextStep_v3(ChessFrame.WHITE);
+				if (this.chessframe.isLegal(robotXY[0], robotXY[1])) {
+					this.chessframe.makeMove(robotXY[0], robotXY[1], ChessFrame.WHITE);
+				}
+				this.chessframe.updateBoundary(robotXY[0], robotXY[1]);
+				if (this.chessframe.isEnd(robotXY[0], robotXY[1], ChessFrame.WHITE)) {
+					System.out.println("robot wins!");
+					App app = new App();
+					//Message Box
+					JOptionPane.showMessageDialog(null, "Sorry, you lose.","", JOptionPane.INFORMATION_MESSAGE,app.icon1);
+					this.chessframe.init();
+					this.chessframe.repaint();
+				}
+			}
+			SWITCH = 1;// switch to player move
 		}
 
 	}
