@@ -1,16 +1,9 @@
 package algorithm_design.gobang;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.HashMap;
 
