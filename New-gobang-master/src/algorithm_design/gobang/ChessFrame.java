@@ -82,6 +82,9 @@ public class ChessFrame extends JFrame {
 				this.s[i][j] = EMPTY;
 			}
 		}
+		Arrays.fill(BOUNDARY, 0);
+		Arrays.fill(SEARCH, 0);
+		
 		// always robot move first
 		this.makeMove(7, 7, WHITE);
 		// turn to player move
