@@ -28,7 +28,8 @@ public class MouseListener implements java.awt.event.MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-
+		
+		// player's round
 		if (SWITCH == 1) {
 			// player move
 			// capture the mouse current coordinate
@@ -53,8 +54,8 @@ public class MouseListener implements java.awt.event.MouseListener {
 		}
 		
 		
-		// robot movement
-		while (SWITCH == -1) {
+		// robot's round
+		if (SWITCH == -1) {
 			// level 1
 			if (ChessFrame.LEVEL == 1) {
 				// set the depth of search tree to 1
@@ -71,11 +72,8 @@ public class MouseListener implements java.awt.event.MouseListener {
 					JOptionPane.showMessageDialog(null, "Sorry, you lose.","", JOptionPane.INFORMATION_MESSAGE,app.icon1);
 					this.chessframe.init();
 					this.chessframe.repaint();
-					break;
 				}
-			}
-			// level 2
-			if (ChessFrame.LEVEL == 2) {
+			} else if (ChessFrame.LEVEL == 2) {
 				// set the depth of search tree to 1
 				Robot.SEARCH_DEPTH = 1;
 				int robotXY[] = robot.nextStep_v2(ChessFrame.WHITE);
@@ -90,11 +88,8 @@ public class MouseListener implements java.awt.event.MouseListener {
 					JOptionPane.showMessageDialog(null, "Sorry, you lose.","", JOptionPane.INFORMATION_MESSAGE,app.icon1);
 					this.chessframe.init();
 					this.chessframe.repaint();
-					break;
 				}
-			}
-			// level 3
-			if (ChessFrame.LEVEL == 3) {
+			} else if (ChessFrame.LEVEL == 3) {
 				// set the depth of search tree to 2, that is the master
 				Robot.SEARCH_DEPTH = 2;
 				int robotXY[] = robot.nextStep_v3(ChessFrame.WHITE);
@@ -109,10 +104,9 @@ public class MouseListener implements java.awt.event.MouseListener {
 					JOptionPane.showMessageDialog(null, "Sorry, you lose.","", JOptionPane.INFORMATION_MESSAGE,app.icon1);
 					this.chessframe.init();
 					this.chessframe.repaint();
-					break;
 				}
 			}
-			SWITCH = 1;// switch to player move
+			SWITCH = ChessFrame.BLACK;// switch to player move
 		}
 
 	}
