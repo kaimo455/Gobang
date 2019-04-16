@@ -1,6 +1,8 @@
 package algorithm_design.gobang;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -67,6 +69,13 @@ public class ChessFrame extends JFrame {
 
 	// initialize ChessBoard
 	public void init() {
+		// choose difficulty
+				Object[] possibleValues = { "Rookie", "Master","Veteran" }; 
+				Object selectedValue = JOptionPane.showInputDialog(null, "Choose difficulty", "Welcome", JOptionPane.INFORMATION_MESSAGE, null, possibleValues, possibleValues[0]);
+				if (selectedValue.toString().compareTo("Rookie") == 0) ChessFrame.LEVEL = 1;
+				if (selectedValue.toString().compareTo("Master") == 0) ChessFrame.LEVEL = 2;
+				if (selectedValue.toString().compareTo("Veteran") == 0) ChessFrame.LEVEL = 3;
+				
 		// initialized all coordinates to zero
 		for(int i = 0; i < ChessFrame.CHESS_SIZE; i++) {
 			for (int j = 0; j < ChessFrame.CHESS_SIZE; j++) {
