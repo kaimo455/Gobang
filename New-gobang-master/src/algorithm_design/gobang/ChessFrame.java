@@ -20,21 +20,20 @@ public class ChessFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	// color value and empty value, player-black, robot-white
 	public static int EMPTY = 0, BLACK = 1, WHITE = -1;
-	// left-top coordinate
+	// left-top coordinate, it just for draw the ChessBoard
 	public static int x = 30, y = 50;
-	// set ChessBoard size and cell size
+	// set ChessBoard size/height/width and cell size
 	public static int CHESS_SIZE = 15, CELL_SIZE = 30;
 	// matrix to store all chess coordinates
 	public static int[][] s = new int[CHESS_SIZE][CHESS_SIZE];
-	// level = 1, 2, 3
+	// level = 1, 2, 3, to indicate which difficulty level to go
 	public static int LEVEL = 1;
-	
-	//initiate boundary
+	// initiate boundary and search boundary, we also define a null boundary for quick comparison
 	public static int[] BOUNDARY = {0, 0, 0, 0};
 	private int[] NULLBOUNDARY = {0, 0, 0, 0};
 	public static int[] SEARCH = {0, 0, 0, 0};
 	
-	// scorebaord
+	// score table
 	public static HashMap <String, Integer> toScore1 = new HashMap<>();
 	public static HashMap <String, Integer> toScore2 = new HashMap<>();
 	public static HashMap <String, Integer> toScore3 = new HashMap<>();
@@ -47,7 +46,7 @@ public class ChessFrame extends JFrame {
 	
 	// constructor
 	public ChessFrame(){
-		// initialize scorebaord
+		// initialize score table
 		toScore1.put("___a__", 20);
 		toScore1.put("__a__", 20);
 		toScore2.put("_a_a__", 120);
@@ -66,7 +65,7 @@ public class ChessFrame extends JFrame {
 		toScore5.put("aaaaa", 50000);
 	}
 
-	// initialize chessboard
+	// initialize ChessBoard
 	public void init() {
 		// initialized all coordinates to zero
 		for(int i = 0; i < ChessFrame.CHESS_SIZE; i++) {
@@ -74,7 +73,7 @@ public class ChessFrame extends JFrame {
 				this.s[i][j] = EMPTY;
 			}
 		}
-		// always robot move firsts
+		// always robot move first
 		this.makeMove(7, 7, WHITE);
 		// turn to player move
 		MouseListener.SWITCH = BLACK;
