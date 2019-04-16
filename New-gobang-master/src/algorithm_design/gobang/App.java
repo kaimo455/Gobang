@@ -37,6 +37,7 @@ public class App {
 		chessframe.setResizable(false);
 		chessframe.setVisible(true);
 		chessframe.init();
+		chessframe.repaint();
 		// mouse listening class instance
 		MouseListener mouselistener = new MouseListener(chessframe);
 		chessframe.addMouseListener(mouselistener);
