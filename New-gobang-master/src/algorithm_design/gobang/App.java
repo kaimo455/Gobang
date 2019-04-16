@@ -20,8 +20,8 @@ public class App {
 	public ImageIcon icon2;
 	
 	public App(){
-		icon1 = new ImageIcon("./data/lose.jpg");
-		icon2 = new ImageIcon("./data/win.jpg");
+		icon1 = new ImageIcon(App.class.getResource("/Images/lose.jpg"));
+		icon2 = new ImageIcon(App.class.getResource("/Images/win.jpg"));
 	}
 
 	public static void main(String[] args) {
