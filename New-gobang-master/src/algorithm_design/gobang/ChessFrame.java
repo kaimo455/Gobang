@@ -32,18 +32,17 @@ public class ChessFrame extends JFrame {
 	private int[] NULLBOUNDARY = {0, 0, 0, 0};
 	public static int[] SEARCH = {0, 0, 0, 0};
 	
-	// scorebaord
-	public static HashMap <String, Integer> toScore1 = new HashMap<>();
-	public static HashMap <String, Integer> toScore2 = new HashMap<>();
-	public static HashMap <String, Integer> toScore3 = new HashMap<>();
-	public static HashMap <String, Integer> toScore4 = new HashMap<>();
-	public static HashMap <String, Integer> toScore5 = new HashMap<>();
-
+	
 	// two buffer to solve screen flashes
 	private Image iBuffer;  
 	private Graphics gBuffer; 
 	
-
+	// scorebaord
+		public static HashMap <String, Integer> toScore1 = new HashMap<>();
+		public static HashMap <String, Integer> toScore2 = new HashMap<>();
+		public static HashMap <String, Integer> toScore3 = new HashMap<>();
+		public static HashMap <String, Integer> toScore4 = new HashMap<>();
+		public static HashMap <String, Integer> toScore5 = new HashMap<>();
 
 	public ChessFrame(){
 		// initialize score map

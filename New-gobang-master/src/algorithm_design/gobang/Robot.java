@@ -26,9 +26,6 @@ public class Robot {
 		// search depth meet || game over
 		if (depth >= SEARCH_DEPTH || chessframe.isEnd(currX, currY, -color)) {
 			int score = chessframe.reckon(ROBOT_COLOR) - chessframe.reckon(-ROBOT_COLOR);
-			// if (depth % 2 == 0) {
-			// score = -score;
-			// }
 			return score;
 		}
 
@@ -41,32 +38,39 @@ public class Robot {
 					continue;
 				}
 				chessframe.makeMove(x, y, color);
-				// int score = -alphaBeta(depth + 1, -beta, -alpha, -color, x,
-				// y);
+				
 				int score = alphaBeta(depth + 1, alpha, beta, color, x, y);
 				chessframe.unMove(x, y);
 
-				// pruning
+				
+				
+				//Max 
 				if (depth % 2 == 0) {
-					// update alpha
+					
 					if (score > alpha) {
+						// update alpha & coordinate
 						tempCorrX = x;
 						tempCorrY = y;
 						alpha = score;
 					}
 
 					if (alpha >= beta) {
+						// pruning
 						return alpha;
 
 					}
-				} else {
+				} 
+				//Min
+				else {
 					if (score < beta) {
+						// update beta & coordinate
 						tempCorrX = x;
 						tempCorrY = y;
 						beta = score;
 
 					}
 					if (alpha >= beta) {
+						// pruning
 						return beta;
 
 					}
