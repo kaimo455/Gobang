@@ -54,7 +54,7 @@ public class MouseListener implements java.awt.event.MouseListener {
 		
 		
 		// robot movement
-		if (SWITCH == -1) {
+		while (SWITCH == -1) {
 			// level 1
 			if (ChessFrame.LEVEL == 1) {
 				// set the depth of search tree to 1
@@ -71,6 +71,7 @@ public class MouseListener implements java.awt.event.MouseListener {
 					JOptionPane.showMessageDialog(null, "Sorry, you lose.","", JOptionPane.INFORMATION_MESSAGE,app.icon1);
 					this.chessframe.init();
 					this.chessframe.repaint();
+					break;
 				}
 			}
 			// level 2
@@ -89,6 +90,7 @@ public class MouseListener implements java.awt.event.MouseListener {
 					JOptionPane.showMessageDialog(null, "Sorry, you lose.","", JOptionPane.INFORMATION_MESSAGE,app.icon1);
 					this.chessframe.init();
 					this.chessframe.repaint();
+					break;
 				}
 			}
 			// level 3
@@ -107,6 +109,7 @@ public class MouseListener implements java.awt.event.MouseListener {
 					JOptionPane.showMessageDialog(null, "Sorry, you lose.","", JOptionPane.INFORMATION_MESSAGE,app.icon1);
 					this.chessframe.init();
 					this.chessframe.repaint();
+					break;
 				}
 			}
 			SWITCH = 1;// switch to player move
