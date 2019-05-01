@@ -19,4 +19,4 @@ What we had implemented is a Java application which is an automatic Gomoku game 
 4. Score evaluation
 5. Speed up - boundary of searching
 ## User Interface
-https://github.com/MarkKai/Gobang/blob/master/userInterface/1.png
+[1](https://github.com/MarkKai/Gobang/blob/master/userInterface/1.png)
