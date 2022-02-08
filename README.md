@@ -1,6 +1,6 @@
 # Gobang
 ## Team Members
-- Kai Mo [github](https://github.com/MarkKai)
+- Kai Mo [github](https://github.com/kaimo455)
 - Quan Liu [github](https://github.com/hans12x)
 - Xiaoqian Xu [github](https://github.com/Cecilia-xu)
 - Tianqi Xie [github](https://github.com/kikixie95)
